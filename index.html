@@ -310,6 +310,27 @@ footer a:hover{color:var(--fg)}
   .wa-float svg{width:22px;height:22px}
   footer .wrap{padding-bottom:4.5rem}
 }
+
+/* keep carousel cards below the sticky header */
+.arc{isolation:isolate}
+/* Phone layout, part 2 (desktop unchanged) */
+@media (max-width:640px){
+  .chips{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-left:-16px;margin-right:-16px;padding:2px 16px 6px;scroll-padding-inline:16px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 24px),transparent)}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none;padding:.5rem 1rem}
+  .cats{gap:2.4rem}
+  .cat-head{flex-direction:column;align-items:flex-start;gap:.25rem;padding-bottom:.6rem}
+  .cat-head h3{font-size:1.25rem}
+  .cat-head span{font-size:.8rem}
+  .cat .arc{margin-top:1.1rem}
+  .arc.l{height:calc(var(--h) + 36px)}
+  .channel{margin-top:1rem;padding:1rem}
+  .ch-txt b{font-size:1.02rem}
+  .ch-go{padding:.75rem 1rem}
+  .arrow{width:44px;height:44px}
+  .copy{min-height:36px}
+  footer a{display:inline-block;padding:.5rem 0}
+}
 </style>
 </head>
 <body>
