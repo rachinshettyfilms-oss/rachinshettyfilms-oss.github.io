@@ -262,6 +262,14 @@ footer a:hover{color:var(--fg)}
 .dl .v{font-size:clamp(1.15rem,1.9vw,1.5rem)}
 .dl .wa-link svg{width:24px;height:24px}
 .dl .copy{font-size:.82rem;padding:.35rem .9rem}
+
+/* Landscape categories */
+.cats{display:flex;flex-direction:column;gap:4.5rem;margin-top:3.2rem}
+.cat-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;max-width:760px;margin:0 auto;padding-bottom:.8rem;border-bottom:1px solid var(--line)}
+.cat-head h3{margin:0;font-size:clamp(1.25rem,2.2vw,1.6rem);font-weight:500;letter-spacing:-.01em}
+.cat-head span{color:var(--muted);font-size:.85rem}
+.cat .arc{margin-top:1.8rem}
+.arc.l{--w:clamp(280px,44vw,600px)}
 /* Phone layout (desktop unchanged) */
 @media (max-width:640px){
   .section{padding-block:4.5rem 0}
@@ -269,6 +277,7 @@ footer a:hover{color:var(--fg)}
   .arc{margin-top:2rem}
   .arc.v{--w:min(58vw,240px);height:calc(var(--h) + 56px)}
   .arc.l{--w:min(84vw,520px);height:calc(var(--h) + 48px)}
+  .cats{gap:3rem;margin-top:2rem}
   .card,.stage{border-radius:14px}
   .arc-foot{margin-top:.6rem}
   .now b{font-size:.95rem}
@@ -333,14 +342,8 @@ footer a:hover{color:var(--fg)}
         <span class="label">Landscape · 16:9</span>
         <h2>Films for <em>the big screen.</em></h2>
         <p>Brand films for REVA University, GUESSS India Podcast episodes, interviews, a short film and more.</p>
-        <div class="chips" data-arc="l" role="group" aria-label="Filter landscape work">
-          <button class="chip" type="button" data-f="all" aria-pressed="true">All<sup>17</sup></button>
-          <button class="chip" type="button" data-f="brand" aria-pressed="false">Brand films<sup>15</sup></button>
-          <button class="chip" type="button" data-f="podcast" aria-pressed="false">Podcasts<sup>2</sup></button>
-        </div>
       </div>
-      <div class="arc l" id="arc-l" tabindex="0" aria-label="Landscape films carousel. Use left and right arrow keys to browse."></div>
-      <div class="arc-foot"><div class="now" id="now-l"><b></b><span></span></div><div class="ctrl"><button class="arrow" type="button" data-arc="l" data-dir="-1" aria-label="Previous landscape film">←</button><span class="count" id="count-l"></span><button class="arrow" type="button" data-arc="l" data-dir="1" aria-label="Next landscape film">→</button></div></div>
+      <div class="cats" id="l-cats"></div>
       <a class="yt" href="https://www.youtube.com/@GUESSSIndiaPodcast" target="_blank" rel="noopener">GUESSS India Podcast on YouTube ↗</a>
     </div>
   </section>
@@ -580,9 +583,22 @@ footer a:hover{color:var(--fg)}
   Arc.prototype.go=function(d){this.set(this.active+d)};
 
   var arcs={
-    v:new Arc('v',V,{gap:.74,gapM:.5,range:3,rangeM:1,curve:9,angle:6,shrink:.07,auto:4200}),
-    l:new Arc('l',L,{gap:.6,gapM:.45,range:2,rangeM:1,curve:10,angle:4,shrink:.1,auto:5200})
+    v:new Arc('v',V,{gap:.74,gapM:.5,range:3,rangeM:1,curve:9,angle:6,shrink:.07,auto:4200})
   };
+  /* landscape work: one carousel per category */
+  (function(){var box=document.getElementById('l-cats');if(!box)return;
+    var NAME={brand:'Brand films',podcast:'Podcasts',interview:'Interviews & testimonials',event:'Event films',ad:'Digital ads',short:'Short film',more:'More work'};
+    ['brand','podcast','interview','event','ad','short','more'].forEach(function(cat,ci){
+      var items=L.filter(function(x){return x.cat===cat});if(!items.length)return;
+      var k='l'+ci,n=items.length;
+      var d=document.createElement('div');d.className='cat';
+      d.innerHTML='<div class="cat-head"><h3>'+NAME[cat]+'</h3><span>'+n+(n===1?' film':' films')+'</span></div>'+
+        '<div class="arc l" id="arc-'+k+'" tabindex="0" aria-label="'+NAME[cat]+' carousel. Use left and right arrow keys to browse."></div>'+
+        '<div class="arc-foot"><div class="now" id="now-'+k+'"><b></b><span></span></div><div class="ctrl"'+(n<2?' hidden':'')+'><button class="arrow" type="button" data-arc="'+k+'" data-dir="-1" aria-label="Previous film">←</button><span class="count" id="count-'+k+'"></span><button class="arrow" type="button" data-arc="'+k+'" data-dir="1" aria-label="Next film">→</button></div></div>';
+      box.appendChild(d);
+      if(n<2){var c=document.createElement('span');c.id='count-'+k;c.hidden=true;d.appendChild(c)}
+      arcs[k]=new Arc(k,items,{gap:.6,gapM:.45,range:2,rangeM:1,curve:10,angle:4,shrink:.1,auto:n<2?864e5:5200+ci*400});
+    })})();
   document.querySelectorAll('.arrow[data-arc]').forEach(function(b){b.addEventListener('click',function(){arcs[b.dataset.arc].go(+b.dataset.dir)})});
   document.querySelectorAll('.chips').forEach(function(g){var bs=g.querySelectorAll('.chip');bs.forEach(function(b){b.addEventListener('click',function(){bs.forEach(function(x){x.setAttribute('aria-pressed',x===b)});arcs[g.dataset.arc].filter(b.dataset.f)})})});
 
