@@ -79,8 +79,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 /* Hero */
 .hero{position:relative;padding-block:5.5rem 0;text-align:center;overflow:hidden;isolation:isolate}
 .hero::before{content:"";position:absolute;left:50%;top:-20%;width:min(1100px,140vw);height:700px;transform:translateX(-50%);background:radial-gradient(ellipse at center,var(--glow),transparent 65%);z-index:-1;pointer-events:none}
-.pill{display:inline-flex;align-items:center;gap:.55rem;font-size:.8rem;color:var(--muted);padding:.35rem .85rem;border:1px solid var(--line2);border-radius:999px;animation:fade .9s var(--ease) .1s both}
-.pill i{width:6px;height:6px;border-radius:50%;background:var(--rec);animation:blink 1.6s steps(1) infinite}
+.pill{display:inline-flex;align-items:center;gap:.65rem;font-size:1.05rem;font-weight:500;color:var(--fg);padding:.5rem 1.2rem;border:1px solid var(--line2);border-radius:999px;animation:fade .9s var(--ease) .1s both}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--rec);animation:blink 1.6s steps(1) infinite}
 .hero h1{font-size:clamp(2.8rem,7.4vw,6.2rem);margin:1.6rem auto 0;max-width:15ch;animation:fade 1s var(--ease) .2s both}
 .hero h1 em{color:var(--accent)}
 .hero .lead{font-size:clamp(1.02rem,1.5vw,1.2rem);color:var(--muted);max-width:38rem;margin:1.4rem auto 0;animation:fade 1s var(--ease) .35s both}
@@ -265,7 +265,7 @@ footer a:hover{color:var(--fg)}
 /* Phone layout (desktop unchanged) */
 @media (max-width:640px){
   .section{padding-block:4.5rem 0}
-  .pill{font-size:.72rem;white-space:nowrap;max-width:100%}
+  .pill{font-size:.95rem;white-space:nowrap;max-width:100%}
   .arc{margin-top:2rem}
   .arc.v{--w:min(58vw,240px);height:calc(var(--h) + 56px)}
   .arc.l{--w:min(84vw,520px);height:calc(var(--h) + 48px)}
@@ -297,7 +297,7 @@ footer a:hover{color:var(--fg)}
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <span class="pill"><i aria-hidden="true"></i>Cinematographer &amp; Photographer · Dakshina Kannada</span>
+      <span class="pill"><i aria-hidden="true"></i>Cinematographer &amp; Photographer</span>
       <h1>Frames that <em>tell the story.</em></h1>
       <p class="lead">Rachin K Shetty shoots brand films, short films, events, interviews and podcasts, with over 6 years behind the camera and a Best Cinematography award.</p>
       <div class="actions"><a class="btn solid" href="#vertical">View work</a><a class="btn" href="#contact">Get in touch</a></div>
