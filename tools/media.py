@@ -82,7 +82,8 @@ def main():
     lines = [l.split() for l in open(os.path.join(ROOT, "media", "ids.txt")) if l.strip()]
     report = []
     for fid, orient in lines:
-        if os.path.exists(os.path.join(THUMBS, fid + ".jpg")) and os.path.exists(os.path.join(PREV, fid + ".mp4")):
+        # an HD preview already exists: keep it (the site's poster comes from assets/works or assets/thumbs)
+        if os.path.exists(os.path.join(PREV, fid + ".mp4")):
             report.append(f"{fid} skip")
             continue
         try:
