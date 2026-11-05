@@ -51,7 +51,6 @@
 1x1fCfyiG-i7b4zRbERYjjDRRcJvwtFjk v
 1qyFgSp8W-4Y2cMqYfFgLHODv5Qn6v9d- v
 1DqOxSgIFkUWEm2QXUWqZ-g49GKEfUcoS v
-13DPPm-wHfaZbwv2jvpEdJoTbbpxq3gLc v
 1qoCG8tI-H3qcbIYVf7UY4tzUzaoWdJ0w v
 16ga4dy7Eoe5W_2gwyqBJKfM48YBU8vBr v
 1Riyqs-15WrBxFWi0Drcoz9HEGXjdRhKJ v
@@ -71,9 +70,6 @@
 1tggNHKkh4unLH4ooh7xyNkf9N6O-HQOF v
 1mMvYrPYLOx89tAJDbXXzTePVdZFhcRW4 v
 1Gf362wDvx462p8dcGuSXzfOX2o_dRNRi v
-12M5_5iAZcOofTYVaoh404cxDu5lu5RAI v
-1Ldc3bU569cThtb0v1jb16Pu0BSp976ba v
-1eiBvSsIXRlgrnOkl1iVTrJDC5KTXFUi_ v
 1cMSxjwE5fRnCr77uRtrlz4i-P8hkyyKa l
 18ENodgg7W513JcdwjEjGe1MrnqrMxJa6 v
 1hrsooohAAlk-vegARzIiM3sK0chHEB_K l
@@ -81,7 +77,6 @@
 1R2hFurnZSpwPRlc6zxAp3A-PJuagxARr l
 1Eiolw20OBggZhFA5D54Zrpuz8Jk-loS5 l
 11E_4LNwu0K63Qp1PMWd-OSYcx8npW3cH v
-1RnyKPaykkBOKmPriZ58bH4ZiZesS8TW_ v
 1gM5r2Au0XqaaFmVPS-lpTCcztUhD5ygG l
 1AhSTleeglw18-ZWWEzMmrK_sDlbz4f8O v
 1-bhdTnmevMRmGvlR8Vd3Y_gQYp6H0n8I v
