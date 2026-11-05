@@ -264,14 +264,15 @@ footer a:hover{color:var(--fg)}
 .dl .copy{font-size:.82rem;padding:.35rem .9rem}
 
 /* YouTube channel card */
-.channel{display:flex;align-items:center;gap:1.1rem;max-width:760px;margin:1.6rem auto 0;padding:1rem 1.2rem;border:1px solid var(--line2);border-radius:18px;background:var(--panel);transition:border-color .3s,transform .4s var(--ease)}
+.channel{display:flex;align-items:center;gap:1.1rem;max-width:760px;margin:1.4rem auto 0;padding:1.1rem 1.3rem;border:1px solid var(--accent);border-radius:18px;background:linear-gradient(120deg,color-mix(in srgb,var(--accent) 14%,var(--panel)),var(--panel) 70%);box-shadow:0 18px 40px -28px var(--accent);transition:border-color .3s,transform .4s var(--ease)}
 .channel:hover{border-color:var(--accent);transform:translateY(-2px)}
 .channel img{width:72px;height:72px;border-radius:50%;flex:none;object-fit:cover}
 .ch-txt{display:flex;flex-direction:column;gap:.15rem;min-width:0;flex:1}
 .ch-txt small{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.ch-txt b{font-weight:500;font-size:1.08rem}
+.ch-txt b{font-weight:500;font-size:1.12rem}
 .ch-txt span{font-size:.88rem;color:var(--muted)}
-.ch-go{flex:none;font-size:.88rem;font-weight:500;padding:.6rem 1.1rem;border-radius:999px;background:var(--fg);color:var(--bg)}
+.ch-go{flex:none;font-size:.88rem;font-weight:500;padding:.65rem 1.15rem;border-radius:999px;background:var(--accent);color:var(--bg)}
+.ch-txt small{color:var(--accent)}
 @media (max-width:640px){.channel{flex-wrap:wrap}.channel img{width:56px;height:56px}.ch-go{width:100%;text-align:center}}
 /* Landscape categories */
 .cats{display:flex;flex-direction:column;gap:4.5rem;margin-top:3.2rem}
@@ -596,16 +597,18 @@ footer a:hover{color:var(--fg)}
   };
   /* landscape work: one carousel per category */
   (function(){var box=document.getElementById('l-cats');if(!box)return;
-    var NAME={brand:'Brand films',podcast:'Podcasts',interview:'Interviews & testimonials',event:'Event films',ad:'Digital ads',short:'Short film',more:'More work'};
+    var NAME={brand:'Brand films',podcast:'GUESSS India Podcast',interview:'Interviews & testimonials',event:'Event films',ad:'Digital ads',short:'Short film',more:'More work'};
     ['brand','podcast','interview','event','ad','short','more'].forEach(function(cat,ci){
       var items=L.filter(function(x){return x.cat===cat});if(!items.length)return;
       var k='l'+ci,n=items.length;
       var d=document.createElement('div');d.className='cat';
-      d.innerHTML='<div class="cat-head"><h3>'+NAME[cat]+'</h3><span>'+n+(n===1?' film':' films')+'</span></div>'+
+      var cnt=cat==='podcast'?(n+' featured episodes · full series on YouTube'):(n+(n===1?' film':' films'));
+      d.innerHTML='<div class="cat-head"><h3>'+NAME[cat]+'</h3><span>'+cnt+'</span></div>'+
         '<div class="arc l" id="arc-'+k+'" tabindex="0" aria-label="'+NAME[cat]+' carousel. Use left and right arrow keys to browse."></div>'+
         '<div class="arc-foot"><div class="now" id="now-'+k+'"><b></b><span></span></div><div class="ctrl"'+(n<2?' hidden':'')+'><button class="arrow" type="button" data-arc="'+k+'" data-dir="-1" aria-label="Previous film">←</button><span class="count" id="count-'+k+'"></span><button class="arrow" type="button" data-arc="'+k+'" data-dir="1" aria-label="Next film">→</button></div></div>';
       if(cat==='podcast'){var ch=document.createElement('a');ch.className='channel';ch.href='https://www.youtube.com/@guesssindiapodcast';ch.target='_blank';ch.rel='noopener';
-        ch.innerHTML='<img src="assets/guesss-channel.jpg" alt="" width="72" height="72" loading="lazy"><span class="ch-txt"><small>YouTube channel</small><b>GUESSS India Podcast</b><span>Every episode of the series, hosted by Dr. Puran Singh and Prerak Sharma.</span></span><span class="ch-go">Visit channel ↗</span>';d.appendChild(ch)}
+        ch.innerHTML='<img src="assets/guesss-channel.jpg" alt="" width="72" height="72" loading="lazy"><span class="ch-txt"><small>Full series on YouTube</small><b>More episodes on the GUESSS India Podcast channel</b><span>Ep. 01 and Ep. 09 are featured here. Every episode of the series, hosted by Dr. Puran Singh and Prerak Sharma, is on the channel.</span></span><span class="ch-go">Watch all episodes ↗</span>';
+        var arcEl=d.querySelector('.arc');d.insertBefore(ch,arcEl)}
       box.appendChild(d);
       if(n<2){var c=document.createElement('span');c.id='count-'+k;c.hidden=true;d.appendChild(c)}
       arcs[k]=new Arc(k,items,{gap:.6,gapM:.45,range:2,rangeM:1,curve:10,angle:4,shrink:.1,auto:n<2?864e5:5200+ci*400});
