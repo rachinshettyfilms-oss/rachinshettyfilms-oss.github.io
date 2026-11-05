@@ -561,7 +561,9 @@ footer a:hover{color:var(--fg)}
     var sp=w*(narrow?o.gapM:o.gap),range=Math.min(narrow?o.rangeM:o.range,Math.floor(n/2));
     for(var i=0;i<n;i++){
       var d=i-this.active;if(d>n/2)d-=n;if(d<-n/2)d+=n;var ad=Math.abs(d),c=this.cards[i];
-      c.style.transform='translateX('+(d*sp).toFixed(1)+'px) translateY('+(ad*ad*o.curve).toFixed(1)+'px) rotate('+(d*o.angle)+'deg) scale('+(1-ad*o.shrink).toFixed(3)+')';
+      /* hidden cards wait just past the edge of the fan, so they never stretch the page */
+      var td=Math.max(-(range+1),Math.min(range+1,d)),tad=Math.abs(td);
+      c.style.transform='translateX('+(td*sp).toFixed(1)+'px) translateY('+(tad*tad*o.curve).toFixed(1)+'px) rotate('+(td*o.angle)+'deg) scale('+(1-tad*o.shrink).toFixed(3)+')';
       c.style.zIndex=100-ad;c.style.opacity=ad>range?0:(ad===range&&n>3?.55:1);
       c.style.pointerEvents=ad>range?'none':'auto';c.tabIndex=d===0?0:-1;
       c.classList.toggle('active',d===0);c.classList.toggle('side',d!==0);
