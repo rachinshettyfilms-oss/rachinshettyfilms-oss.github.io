@@ -24,6 +24,10 @@ def url(fid):
     return f"https://drive.usercontent.google.com/download?id={fid}&export=download&confirm=t"
 
 
+# 1080p copies of the films kept as GitHub release files (no Drive download limit)
+RELEASE = "https://github.com/shubhamshetty77778-sketch/shubhamshetty77778-sketch.github.io/releases/download/videos/"
+
+
 def run(cmd, timeout=600):
     return subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
 
@@ -82,7 +86,9 @@ def main():
             report.append(f"{fid} skip")
             continue
         try:
-            ok, msg = build(fid, orient, url(fid))
+            ok, msg = build(fid, orient, RELEASE + fid + "-hd.mp4")
+            if not ok:
+                ok, msg = build(fid, orient, url(fid))
             if not ok:
                 # Fallback: download the whole file with gdown, then build from disk.
                 local = os.path.join(TMP, fid + ".src")
